@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import { Transition } from 'react-transition-group';
 import './App.css';
 
 function App() {
+  const [toggle, sstToggle] = useState(true)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="container">
+      <button onClick={() => sstToggle(!toggle)}>Toggle</button>
+      <hr/>
+      <div className={'blocks'}>
+        <Transition
+          in={toggle} // флаг которые отвечает за переключение элемента
+          timeout={{
+            enter: 1000, // отвечает за появление элемента через 1000 мс
+            exit: 500  // отвечает за исчезновение элемента через 500 мс
+          }} // поличество милисекунд, сколько эта анимация длится
+          mountOnEnter
+          unmountOnExit
         >
-          Learn React
-        </a>
-      </header>
+          {state => <div className={`square blue ${state}`}>{state}</div>}
+
+        </Transition>
+      </div>
     </div>
   );
 }
