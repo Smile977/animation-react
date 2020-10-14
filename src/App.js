@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
-import { Transition } from 'react-transition-group';
+import { Transition, CSSTransition } from 'react-transition-group';
 import './App.css';
 
 function App() {
   const [toggle, sstToggle] = useState(true)
+  const [toggle2, sstToggle2] = useState(true)
 
   return (
     <div className="container">
       <button onClick={() => sstToggle(!toggle)}>Toggle</button>
+      <button onClick={() => sstToggle2(!toggle2)}>Toggle 2</button>
       <hr/>
       <div className={'blocks'}>
         <Transition
@@ -28,6 +30,18 @@ function App() {
           {state => <div className={`square blue ${state}`}>{state}</div>}
 
         </Transition>
+
+        <CSSTransition
+          in={toggle2}
+          timeout={1000}
+          mountOnEnter
+          unmountOnExit
+          classNames="os"
+        >
+          <div className="square orange">
+            {toggle2.toString()}
+          </div>
+        </CSSTransition>
       </div>
     </div>
   );
