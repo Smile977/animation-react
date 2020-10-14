@@ -96,3 +96,7 @@ code {
   }
 }
 
+.item {
+  cursor: pointer;
+}
+
